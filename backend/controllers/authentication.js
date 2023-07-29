@@ -18,10 +18,30 @@ router.post('/', async (req, res) => {
             message: `Could not find a user with the provided credentials`
         })
     } else {
+        req.session.userId = user.userId
         res.status(200).json({ user })
     }
 
     console.log(user)
 })
+
+    router.get('/profile', async (req,res) => {
+        let userId  = req.session.userId
+
+        try{
+            let user = await User.findOne({
+                where: {
+                    userId
+                }
+            })
+            if (!user){
+                res.status(404)
+            } else{
+                res.status(200).json(user)
+            }
+        }  catch(e){
+            res.status(404).json({ message: 'Could not validate user' })
+        }
+    })
 
 module.exports = router
