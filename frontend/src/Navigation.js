@@ -32,7 +32,7 @@ function Navigation() {
     }
 
     return (
-        <nav>
+        <nav className='pink'>
             <ul>
                 <li>
                     <a href="#" onClick={() => history.push("/")}>
