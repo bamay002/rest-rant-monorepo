@@ -25,14 +25,26 @@ function Navigation() {
 
     if (currentUser) {
         loginActions = (
-            <li style={{ float: 'right' }}>
-                Logged in as {currentUser.firstName} {currentUser.lastName}
-            </li>
+            <>
+                <li style={{ float: 'right' }}>
+                    Logged in as {currentUser.firstName} {currentUser.lastName}
+                </li>
+                <li>
+                    <button type='button' 
+                    style={{ float: 'right', marginRight: '20px'}}
+                    onClick={() => {
+                        localStorage.removeItem('token')
+                        window.location.reload()
+                    }}>
+                        Log Out
+                    </button>
+                </li>
+            </>
         )
     }
 
     return (
-        <nav className='pink'>
+        <nav>
             <ul>
                 <li>
                     <a href="#" onClick={() => history.push("/")}>
