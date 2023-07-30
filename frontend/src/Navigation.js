@@ -23,6 +23,8 @@ function Navigation() {
         </>
     )
 
+    let addPlacesButton = null
+
     if (currentUser) {
         loginActions = (
             <>
@@ -41,6 +43,16 @@ function Navigation() {
                 </li>
             </>
         )
+
+        if (currentUser.role === 'admin'){
+            addPlacesButton = (
+                <li>
+                <a href="#" onClick={() => history.push("/places/new")}>
+                    Add Place
+                </a>
+            </li>
+            )
+        }
     }
 
     return (
@@ -50,17 +62,13 @@ function Navigation() {
                     <a href="#" onClick={() => history.push("/")}>
                         Home
                     </a>
-                </li>
+                </li>  
                 <li>
                     <a href="#" onClick={() => history.push("/places")}>
                         Places
                     </a>
                 </li>
-                <li>
-                    <a href="#" onClick={() => history.push("/places/new")}>
-                        Add Place
-                    </a>
-                </li>
+                { addPlacesButton }
                 {loginActions}
             </ul>
         </nav>
